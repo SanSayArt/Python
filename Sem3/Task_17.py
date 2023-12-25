@@ -10,7 +10,7 @@ Output: 6
 arr = [1, 1, 2, 0, -1, 3, 4, 4]
 
 print(len(set(arr)))
-
+print(set(arr))
 # Традиционный итератор с функцией APPEND
 lst = []
 for el in arr:
