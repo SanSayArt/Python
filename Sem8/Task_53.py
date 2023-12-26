@@ -71,6 +71,21 @@ def write_file(file_name, lst):
         f_writer.writeheader()
         f_writer.writerows(res)
 
+def copy_row(file_name):
+    with open(file_name, "r", encoding='utf-8') as data:
+        f_reader = DictReader(data)
+        lst = list(f_reader)
+        for el in range(len(lst)):
+            print(f"{el + 1} - {lst[el]}")
+    n = int(input("Введите номер строки для копирования: ")) - 1
+    lst_1 = []
+    for val in lst[n].values():
+        lst_1.append(val)
+    f_name = "1_" + file_name
+    if not exists(f_name):
+        create_file(f_name)    
+    write_file(f_name, lst_1)
+    #res = read_file(file_name)
 
 file_name = 'phone.csv'
 
@@ -88,5 +103,10 @@ def main():
                 print("Файл отсутствует. Создайте его.")
                 continue
             print(*read_file(file_name))
+        elif command == "c":
+            if not exists(file_name):
+                print("Файл отсутствует. Создайте его.")
+                continue
+            copy_row(file_name)
 
 main()
